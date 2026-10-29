@@ -1,0 +1,29 @@
+# /etc/systemd/system/mbim-radio-on.service
+[Unit]
+Description=Enable MBIM Modem Radio on Boot
+After=modemmanager.service WWAN.target
+Wants=modemmanager.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mbimcli --device-open-proxy --device="/dev/wwan0mbim0" --quectel-set-radio-state=on
+ExecStartPost=/bin/sleep 2
+
+[Install]
+WantedBy=multi-user.target
+cat: cat: No such file or directory
+root@thinkpad:/home/lukasz/Projects/apartments# cat /etc/systemd/system/mbim-radio-on.service
+[Unit]
+Description=Enable MBIM Modem Radio on Boot
+After=modemmanager.service WWAN.target
+Wants=modemmanager.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mbimcli --device-open-proxy --device="/dev/wwan0mbim0" --quectel-set-radio-state=on
+ExecStartPost=/bin/sleep 2
+
+[Install]
+WantedBy=multi-user.target
